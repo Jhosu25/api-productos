@@ -1,6 +1,8 @@
-package com.itsqmet.controlador;
+package com.itsqmet.controller;
 
-import com.itsqmet.modelo.Producto;
+import com.itsqmet.entity.Producto;
+import com.itsqmet.service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,23 +12,20 @@ import java.util.List;
 @RequestMapping("/productos")
 public class ProductoControlador {
 
+    @Autowired
+    private ProductoService productoService;
+
     private List<Producto> productos;
 
-    public ProductoControlador(){
-        productos = new ArrayList<>();
-        productos.add(new Producto(1, "Laptop", "tecnologia", 25));
-        productos.add(new Producto(2, "Mouse", "tecnologia", 15));
-        productos.add(new Producto(3, "Teclado", "tecnologia", 50));
-        productos.add(new Producto(4, "Padmouse", "tecnologia", 10));
-    }
 
     //Listar productos
     @GetMapping
     public List<Producto> listarProductos(){
+        productos = productoService.mostrarProductos();
         return productos;
     }
 
-    //Buscar productos por Id
+    /*/Buscar productos por Id
     @GetMapping("/{id}")
     public Producto buscarProductoById(@PathVariable int id){
         for (Producto producto: productos){
@@ -69,7 +68,7 @@ public class ProductoControlador {
                 break;
             }
         }
-    }
+    }*/
 
 
 

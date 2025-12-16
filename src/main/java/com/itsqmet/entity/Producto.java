@@ -1,12 +1,17 @@
-package com.itsqmet.modelo;
+package com.itsqmet.entity;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "products")
 public class Producto {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Size(min = 5, max = 10)
     private String nombre;
@@ -21,7 +26,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String nombre, String categoria, int stock) {
+    public Producto(long id, String nombre, String categoria, int stock) {
         this.id = id;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -34,11 +39,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
