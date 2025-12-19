@@ -13,7 +13,10 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //validacion backend
     @Size(min = 5, max = 10)
+    //Regla de integridad en la db
+    @Column(unique = true)
     private String nombre;
 
     @Size(min = 5, max = 20)
